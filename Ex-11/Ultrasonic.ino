@@ -1,32 +1,23 @@
-int trigger = 8;
-int echo = 10;
-boolean measured = false;
-
+int echo = 8, trig = 12;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
+  pinMode(trig, OUTPUT);
+  
 }
 
 void loop() {
-  
-
-    // Clearing the trigger pin
-    digitalWrite(trigger, LOW);
-    delayMicroseconds(2);
-
-    // Triggering the trigger pin
-    digitalWrite(trigger, HIGH);
-    delayMicroseconds(2); 
-    digitalWrite(trigger, LOW);
-
-    float time;
-    time = pulseIn(echo, HIGH);
-    float distance = (time * 0.0343) / 2;
-    float height = 100; 
-    Serial.print("distance :");
-    Serial.println(distance);
-   
-  
+  // put your main code here, to run repeatedly:
+  digitalWrite(trig, LOW);
+  delay(2000);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(20);
+  digitalWrite(trig, LOW);
+  float time;
+  time = pulseIn(echo,HIGH);
+  float distance = (time * 0.017);
+  Serial.print("Distance :");
+  Serial.println(distance);
+  delay(1000);
 }
